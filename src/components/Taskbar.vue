@@ -2,35 +2,39 @@
 import { Icon } from "@iconify/vue";
 import { ref, onMounted } from "vue";
 
-const clock = ref("");
+const clock = ref("00h00");
 
 onMounted(() => {
-  setInterval(() => {
+  const updateTime = () => {
     clock.value = new Date()
-      .toLocaleTimeString()
+      .toTimeString()
       .replace(":", "h")
       .slice(0, 5);
-  }, 1000);
+  };
+
+  updateTime();
+  setInterval(updateTime, 1000);
 });
 </script>
 
 <template>
   <nav class="taskbar">
     <div class="taskbar-start">
-      <Icon icon="pixelarticons:track-changes" class="icon" />
+      <Icon icon="ci:main-component" class="icon" />
       <div class="launcher">
-        <Icon icon="pixelarticons:folder" class="icon" />
-        <Icon icon="pixelarticons:github" class="icon" />
-        <Icon icon="pixelarticons:video" class="icon" />
+        <Icon icon="ci:folder" class="icon" />
+        <Icon icon="ci:planet" class="icon" />
+        <Icon icon="ci:camera" class="icon" />
       </div>
     </div>
     <div class="taskbar-end">
-      <Icon icon="pixelarticons:download" class="icon" />
-      <Icon icon="pixelarticons:radio-signal" class="icon" />
-      <Icon icon="pixelarticons:bluetooth" class="icon" />
-      <Icon icon="pixelarticons:pin" class="icon" />
-      <Icon icon="pixelarticons:volume-3" class="icon" />
+      <div class="tray-icons">
+        <Icon icon="ci:download" class="icon" />
+        <Icon icon="ci:wifi-high" class="icon" />
+        <Icon icon="ci:volume-max" class="icon" />
+      </div>
       <span class="clock">{{ clock }}</span>
+      <Icon icon="ci:bell-notification" class="icon" />
     </div>
   </nav>
 </template>
@@ -38,19 +42,25 @@ onMounted(() => {
 <style scoped>
 .taskbar {
   justify-content: space-between;
-  background-color: #0f0f0f;
   width: calc(100vw - 2.4em);
   flex-direction: row;
-  border-radius: .5em;
   position: absolute;
-  padding: .2em .7em;
-  margin: 1em 1.2em;
+  padding: .2em .85em;
+  margin: 0.8em 1.2em;
   height: 3em;
   bottom: 0;
+  /* From https://css.glass */
+  background: rgba(36, 36, 46, 0.31);
+  border-radius: 1rem; /* 16px */
+  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1); /* 4px 30px */
+  backdrop-filter: blur(0.3125rem); /* 5px */
+  -webkit-backdrop-filter: blur(0.3125rem);
+  border: 0.0625rem solid rgba(36, 36, 46, 0.3); /* 1px */
 }
 
 .taskbar,
 .launcher,
+.tray-icons,
 .taskbar-start,
 .taskbar-end {
   display: flex;
@@ -63,7 +73,7 @@ onMounted(() => {
 }
 
 .icon {
-  font-size: 2.1rem;
+  font-size: 1.75rem;
   transition: filter 100ms ease-in-out;
 }
 
@@ -72,19 +82,19 @@ onMounted(() => {
   transition: filter 100ms ease-in-out;
 }
 
-.taskbar-end {
+.tray-icons {
   gap: .5em;
 }
 
-.taskbar-end .icon {
-  font-size: 1.4rem;
+.tray-icons .icon {
+  font-size: 1.5rem;
 }
 
 .clock {
-  padding-left: .3em;
+  padding-left: .6em;
   padding-bottom: .05em;
-  padding-right: .15em;
-  font-weight: 250;
-  font-size: 1.6em;
+  padding-right: .6em;
+  font-weight: 350;
+  font-size: 1.5em;
 }
 </style>

@@ -5,11 +5,11 @@ import { Icon } from "@iconify/vue";
 <template>
   <nav class="icon-grid">
     <span class="icon">
-      <Icon icon="pixelarticons:folder-plus" />
+      <Icon icon="ci:folder-code" />
       <span>Meu computador</span>
     </span>
     <span class="icon">
-      <Icon icon="pixelarticons:file-alt" />
+      <Icon icon="ci:folder-document" />
       <span>Meus documentos</span>
     </span>
     <!-- <span class="icon">
@@ -42,7 +42,6 @@ import { Icon } from "@iconify/vue";
 <style scoped>
 .icon-grid {
   padding: 1em 1.2em;
-  /* justify-content: flex-end; */
   display: flex;
   flex-wrap: wrap;
   gap: .8em;
@@ -51,6 +50,7 @@ import { Icon } from "@iconify/vue";
 .icon {
   border: 2px solid #00000000;
   flex-direction: column;
+  border-radius: .5em;
   height: min-content;
   align-items: center;
   text-align: center;
@@ -61,13 +61,13 @@ import { Icon } from "@iconify/vue";
 }
 
 .icon:hover {
-  background-color: #bababa40;
-  border: 2px solid #bababa60;
+  background-color: #bababa20;
+  border: 2px solid #bababa40;
 }
 
 .icon:active {
-  background-color: #bababa80;
-  border: 2px solid #bababa;
+  background-color: #bababa40;
+  border: 2px solid #bababa60;
 }
 
 .icon svg {
