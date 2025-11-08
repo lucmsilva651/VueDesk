@@ -1,9 +1,11 @@
 <script setup>
 import Desktop from './components/Desktop.vue';
 import Taskbar from './components/Taskbar.vue';
+import DeskClock from './components/DeskClock.vue';
 </script>
 
 <template>
+  <DeskClock />
   <Desktop />
   <Taskbar />
 </template>
